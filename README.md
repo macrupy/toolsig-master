@@ -2,6 +2,9 @@
 * Instagram (also called IG or Insta) is a photo and video sharing application that allows users to take photos, take videos, apply digital filters and share them to various social networking services, including Instagram's own.
 * Instagram Tools Based on NodeJS (This script or code was created by ccocot - Aldi Nugraha).
 
+ This file was originally changed by officialputuid,
+		i'm reupload
+
 [![Build](https://img.shields.io/badge/Codename_-_officialputuid-brightgreen.svg)]()
 [![License](http://img.shields.io/:license-MIT-brightgreen.svg?style=flat)](LICENSE)
 [![Badges](https://img.shields.io/badge/badges-%F0%9F%91%8D-brightgreen.svg)](https://shields.io/)
@@ -18,8 +21,8 @@ $ [Other Information](#Other-Information)
 ## All Tutorial (WINDOWS, C9/CA & TERMUX) [https://youtu.be/J7WbsfZ7z6I]
 
 ## Default or Basic Usage
-	$ git clone https://github.com/officialputuid/toolsig.git
-	$ cd toolsig
+	$ git clone https://github.com/macrupy/toolsig-master
+	$ cd toolsig-master
 	$ npm i
 	$ node index.js
 	
@@ -35,16 +38,16 @@ $ [Other Information](#Other-Information)
 	$ pkg upgrade && pkg update
 	$ pkg install git
 	$ pkg install nodejs-lts
-	$ git clone https://github.com/officialputuid/toolsig.git
-	$ cd toolsig
+	$ git clone https://github.com/macrupy/toolsig-master
+	$ cd toolsig-master
 	$ npm i
 	$ node index.js
 
 ## Tutorial on C9io/CodeAnywhere [WEB]
 	$ Login c9.io/login | https://codeanywhere.com/login
 	$ Select & Install Workspace + Package NodeJS
-	$ git clone https://github.com/officialputuid/toolsig.git
-	$ cd toolsig
+	$ git clone 
+	$ cd toolsighttps://github.com/macrupy/toolsig-master
 	$ npm i
 	$ node index.js
 
@@ -76,9 +79,7 @@ $ [Other Information](#Other-Information)
 
 ## Attention
 	☑ This file was originally changed by officialputuid,
-		if you find this file but you get this file from another
-		source not from my Github, I am not responsible for anything
-		that happens. Thank you for being faithful to using toolsig.
+		i'm reupload
 
 ## Other Information
 	☆ https://github.com/dilame/instagram-private-api
