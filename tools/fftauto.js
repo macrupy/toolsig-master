@@ -17,8 +17,8 @@ const {
    ▐█▌·▐█▌.▐▌▐█▌.▐▌▐█▌▐▌▐█▄▪▐█▐█▌▐█▄▪▐█
    ▀▀▀  ▀█▄▀▪ ▀█▄▀▪.▀▀▀  ▀▀▀▀ ▀▀▀·▀▀▀▀ 
 
-  Ξ TITLE : Folow Like Comment (Followers Target) v2
-  Ξ NOTE  : Only Single Target, v2 of the previous tool
+  Ξ TITLE : Folow Like Comment (Followers Target)
+  Ξ NOTE  : Only Single Target, for More use [BETA]
           : TESTED "OK" BUG? YouTellMe!
     }`
   );
@@ -26,7 +26,7 @@ const {
     {
       type: "input",
       name: "username",
-      message: "Input username:",
+      message: "Input Username:",
       validate: (val) => val.length != 0 || "Please input username!",
     },
     {
@@ -59,7 +59,7 @@ const {
       name: "delayTime",
       message: "Input sleep time (in milliseconds):",
       validate: (val) => /[0-9]/.test(val) || "Only input numbers",
-    },
+    }
   ];
 
   try {
@@ -69,52 +69,21 @@ const {
       target,
       perExec,
       delayTime,
-      inputMessage,
+      inputMessage
     } = await inquirer.prompt(questions);
     const ig = new instagram(username, password);
     print("Try to Login . . .", "wait", true);
     const login = await ig.login();
-    print(`Logged in as @${login.username} (ID: ${login.pk})`, "ok");
+    print(`Logged in as @${login.username} (User ID: ${login.pk})`, "ok");
     print(`Collecting information of @${target} . . .`, "wait");
     const id = await ig.getIdByUsername(target),
       info = await ig.userInfo(id);
     if (!info.is_private) {
       print(
-        `@${target} (ID: ${id}) => Followers: ${info.follower_count}, Following: ${info.following_count}`,
+        `@${target} (User ID: ${id}) => Followers: ${info.follower_count}, Following: ${info.following_count}`,
         "ok"
       );
-      const getMyFollowers = async () => {
-        let followers = [];
-        try {
-          const get = await ig.followersFeed(login.pk);
-          do {
-            let items = await get.items();
-            await Promise.all(
-              items.map((follower) => followers.push(follower.pk))
-            );
-          } while (get.moreAvailable);
-          return Promise.resolve(followers);
-        } catch (err) {
-          return Promise.reject(err.message);
-        }
-      };
-      const getMyFollowing = async () => {
-        let following = [];
-        try {
-          const get = await ig.followingFeed(login.pk);
-          do {
-            let items = await get.items();
-            await Promise.all(
-              items.map((follows) => following.push(follows.pk))
-            );
-          } while (get.moreAvailable);
-          return Promise.resolve(following);
-        } catch (err) {
-          return Promise.reject(err.message);
-        }
-      };
-      const get = [getMyFollowers(), getMyFollowing()];
-      const [myFollowers, myFollowing] = await Promise.all(get);
+      print("Collecting followers . . .", "wait");
       const targetFollowers = await ig.followersFeed(id);
       print(
         `Doing task with ratio ${perExec} target / ${delayTime} milliseconds \n`,
@@ -126,10 +95,11 @@ const {
         for (let i = 0; i < items.length; i++) {
           await Promise.all(
             items[i].map(async (follower) => {
+              const status = await ig.friendshipStatus(follower.pk);
               if (
                 !follower.is_private &&
-                !myFollowing.includes(follower.pk) &&
-                !myFollowers.includes(follower.pk)
+                !status.following &&
+                !status.followed_by
               ) {
                 const media = await ig.userFeed(follower.pk),
                   lastMedia = await media.items();
@@ -183,4 +153,3 @@ const {
     print(err, "err");
   }
 })();
-//by 1dcea8095a18ac73b764c19e40644b52 116 111 111 108 115 105 103  118 51 
