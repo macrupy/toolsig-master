@@ -88,5 +88,5 @@ $ [Other Information](#Other-Information)
 ## License
 	☑ This project is licensed under MIT License 2017-2020. https://opensource.org/licenses/MIT.
 
-## Me!
-	☆ fb|ig|twitter|gplus|keybase|line|github|behance|medium? officialputuid.
+
+	
